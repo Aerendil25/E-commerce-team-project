@@ -1,6 +1,9 @@
 import Product from "./Product";
 import Hero from "./Hero";
+import { useGlobal } from "../context/GlobalContext";
 export default function Products() {
+  const { productsData } = useGlobal();
+
   return (
     <div>
       <Hero />
@@ -57,7 +60,9 @@ export default function Products() {
           </div>
         </div>
         <div class="products-container">
-          <Product />
+          {productsData.map((product) =>
+            <Product product={product} />
+          )}
         </div>
       </section>
     </div>
