@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 // import Products from "../components/Products";
 // import Home from "../components/Home";
 // import About from "../components/About";
+import logo from "../images/logo-black.png";
 export default function Navbar() {
   return (
     <nav class="navbar page">
@@ -12,30 +13,23 @@ export default function Navbar() {
           </button>
           <ul class="nav-links">
             <li>
-              <Link to="/home" class="nav-link">
+              <Link to="/" class="nav-link">
                 home
-                {/* <Home /> */}
               </Link>
             </li>
             <li>
               <Link to="/products" class="nav-link">
                 products
-                {/* <Products /> */}
               </Link>
             </li>
             <li>
               <Link to="/about" class="nav-link">
                 about
-                {/* <About /> */}
               </Link>
             </li>
           </ul>
         </div>
-        <img
-          src="https://vanilla-js-store.netlify.app/images/logo-black.svg"
-          class="nav-logo"
-          alt="logo"
-        />
+        <img src={logo} class="nav-logo" alt="logo" />
         <div class="toggle-container">
           <button class="toggle-cart">
             <i class="fas fa-shopping-cart"></i>
