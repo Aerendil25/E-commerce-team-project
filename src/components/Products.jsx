@@ -1,12 +1,9 @@
 import Product from "./Product";
+import Hero from "./Hero";
 export default function Products() {
   return (
     <div>
-      <section class="page-hero">
-        <div class="section-center">
-          <h3 class="page-hero-title">Home / Products</h3>
-        </div>
-      </section>
+      <Hero />
       <div class="sidebar-overlay">
         <aside class="sidebar">
           <button class="sidebar-close">
