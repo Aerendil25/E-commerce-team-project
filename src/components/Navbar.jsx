@@ -1,7 +1,4 @@
 import { Link } from "react-router-dom";
-// import Products from "../components/Products";
-// import Home from "../components/Home";
-// import About from "../components/About";
 import logo from "../images/logo-black.png";
 export default function Navbar() {
   return (

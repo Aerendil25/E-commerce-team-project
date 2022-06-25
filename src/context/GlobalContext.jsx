@@ -3,19 +3,20 @@ import { products } from "../data";
 
 const GlobalContext = createContext();
 export const GlobalProvider = ({ children }) => {
-  const [productsData, setProductsData] = useState([]);
+  const [productsData, setProductsData] = useState(products);
+  const [isLoading, setIsLoading] = useState(false);
 
-  useEffect(() => {
-    setProductsData(products);
-  }, []);
-  console.log(productsData);
-
-  // const fetchData = () => {
-
-  // }
+  // useEffect(() => {
+  //   setIsLoading(!isLoading);
+  //   setProductsData(products);
+  //   setIsLoading(!isLoading);
+  // }, []);
+  // console.log(productsData);
 
   return (
-    <GlobalContext.Provider value={{ productsData, setProductsData }}>
+    <GlobalContext.Provider
+      value={{ productsData, setProductsData, isLoading, setIsLoading }}
+    >
       {children}
     </GlobalContext.Provider>
   );
