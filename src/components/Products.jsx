@@ -2,7 +2,7 @@ import Product from "./Product";
 import Hero from "./Hero";
 import { useGlobal } from "../context/GlobalContext";
 export default function Products() {
-  const { productsData } = useGlobal();
+const { productsData } = useGlobal();
 
   return (
     <div>
@@ -46,17 +46,19 @@ export default function Products() {
               <button class="company-btn">all</button>
               <button class="company-btn">ikea</button>
             </article>
+            {/* Arina's part start */}
             <h4>Price</h4>
             <form class="price-form">
               <input
                 type="range"
                 class="price-filter"
                 min="0"
-                value="50"
+                
                 max="100"
               />
             </form>
             <p class="price-value"></p>
+            {/* Arina's part end */}
           </div>
         </div>
         <div class="products-container">

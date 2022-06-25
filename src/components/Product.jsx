@@ -5,7 +5,7 @@ export default function Product({ product }) {
     <article className="product">
       <div className="product-container">
         <img className="product-img img"
-          src={product.fields.image[0].url} alt="Image not available" />
+          src={product.fields.image[0].url} alt="Not available" />
       </div>
       <footer className="footer">
         <h4 className="product-name">{product.fields.name}</h4>

@@ -1,4 +1,7 @@
-function Loading({ isLoading }) {
+import { useGlobal } from "../context/GlobalContext";
+
+function Loading() {
+  const { isLoading } = useGlobal();
   return (
     isLoading && (
       <div class="page-loading">
