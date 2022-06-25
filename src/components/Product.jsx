@@ -1,17 +1,26 @@
-import { useGlobal } from "../context/GlobalContext";
-export default function Product() {
-  const { productsData } = useGlobal();
+
+export default function Product({ product }) {
 
   return (
-    <div className="grid">
-      {productsData.map((item) => (
-        <div key={item.id}>
-          <h3>{item.fields.company}</h3>
-          <h4>{item.fields.name}</h4>
-          <p>${item.fields.price}</p>
-          <img src={item.fields.image.url} alt="" />
-        </div>
-      ))}
-    </div>
+    <article className="product">
+      <div className="product-container">
+        <img className="product-img img"
+          src={product.fields.image[0].url} alt="Image not available" />
+      </div>
+      <footer className="footer">
+        <h4 className="product-name">{product.fields.name}</h4>
+        <p className="product-price">${formatProductPrice(product.fields.price)}</p>
+      </footer>
+    </article>
   );
+}
+
+/* 
+  function takes price in integer [ number ] format and converts it to price format by getting the last 2 digits
+  as cents [decimals] and adds them to integer part of price
+*/
+const formatProductPrice = (price) => {
+  let decimalPart = (price % 100) / 100
+  let intPart = Math.floor(price / 100)
+  return intPart + decimalPart
 }
