@@ -6,13 +6,6 @@ export const GlobalProvider = ({ children }) => {
   const [productsData, setProductsData] = useState(products);
   const [isLoading, setIsLoading] = useState(false);
 
-  // useEffect(() => {
-  //   setIsLoading(!isLoading);
-  //   setProductsData(products);
-  //   setIsLoading(!isLoading);
-  // }, []);
-  // console.log(productsData);
-
   return (
     <GlobalContext.Provider
       value={{ productsData, setProductsData, isLoading, setIsLoading }}
