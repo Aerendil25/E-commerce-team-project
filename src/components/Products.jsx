@@ -7,27 +7,27 @@ const { productsData } = useGlobal();
   return (
     <div>
       <Hero />
-      <div class="sidebar-overlay">
-        <aside class="sidebar">
-          <button class="sidebar-close">
-            <i class="fas fa-times"></i>
+      <div className="sidebar-overlay">
+        <aside className="sidebar">
+          <button className="sidebar-close">
+            <i className="fas fa-times"></i>
           </button>
-          <ul class="sidebar-links">
+          <ul className="sidebar-links">
             <li>
-              <a href="index.html" class="sidebar-link">
-                <i class="fas fa-home fa-fw"></i>
+              <a href="index.html" className="sidebar-link">
+                <i className="fas fa-home fa-fw"></i>
                 home
               </a>
             </li>
             <li>
-              <a href="products.html" class="sidebar-link">
-                <i class="fas fa-couch fa-fw"></i>
+              <a href="products.html" className="sidebar-link">
+                <i className="fas fa-couch fa-fw"></i>
                 products
               </a>
             </li>
             <li>
-              <a href="about.html" class="sidebar-link">
-                <i class="fas fa-book fa-fw"></i>
+              <a href="about.html" className="sidebar-link">
+                <i className="fas fa-book fa-fw"></i>
                 about
               </a>
             </li>
@@ -35,35 +35,35 @@ const { productsData } = useGlobal();
         </aside>
       </div>
 
-      <section class="products">
-        <div class="filters">
-          <div class="filters-container">
-            <form class="input-form">
-              <input type="text" class="search-input" placeholder="search..." />
+      <section className="products">
+        <div className="filters">
+          <div className="filters-container">
+            <form className="input-form">
+              <input type="text" className="search-input" placeholder="search..." />
             </form>
             <h4>Company</h4>
-            <article class="companies">
-              <button class="company-btn">all</button>
-              <button class="company-btn">ikea</button>
+            <article className="companies">
+              <button className="company-btn">all</button>
+              <button className="company-btn">ikea</button>
             </article>
             {/* Arina's part start */}
             <h4>Price</h4>
-            <form class="price-form">
+            <form className="price-form">
               <input
                 type="range"
-                class="price-filter"
+                className="price-filter"
                 min="0"
                 
                 max="100"
               />
             </form>
-            <p class="price-value"></p>
+            <p className="price-value"></p>
             {/* Arina's part end */}
           </div>
         </div>
-        <div class="products-container">
+        <div className="products-container">
           {productsData.map((product) =>
-            <Product product={product} />
+            <Product product={product} key={product.id} />
           )}
         </div>
       </section>

@@ -3,9 +3,9 @@ import Product from "../components/Product";
 const Featured = () => {
   const { productsData } = useGlobal();
   return (
-    <div  class="products-container">
+    <div  className="products-container">
       {productsData.slice(0, 3).map((product) => (
-        <Product product={product} />
+        <Product product={product} key={product.id}/>
       ))}
     </div>
   );

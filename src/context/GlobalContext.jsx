@@ -1,21 +1,42 @@
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useState } from "react";
 import { products } from "../data";
 
 const GlobalContext = createContext();
 export const GlobalProvider = ({ children }) => {
   const [productsData, setProductsData] = useState(products);
+  const [productsInCart, setProductsInCart] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [isCart, setIsCart] = useState(false);
 
-  // useEffect(() => {
-  //   setIsLoading(!isLoading);
-  //   setProductsData(products);
-  //   setIsLoading(!isLoading);
-  // }, []);
-  // console.log(productsData);
+  const handleAddToCart = (product, e) => {
+    e.preventDefault();
+    let found = productsData.find((data) => data.id === product.id);
+    found
+      ? setProductsInCart([...productsInCart, product])
+      : setProductsInCart([...productsInCart]);
+
+    setIsCart(!isCart);
+  };
+  console.log("isCart", isCart);
+
+  const handleCloseCart =() => {
+    
+  }
 
   return (
     <GlobalContext.Provider
-      value={{ productsData, setProductsData, isLoading, setIsLoading }}
+      value={{
+        productsData,
+        setProductsData,
+        isLoading,
+        setIsLoading,
+        handleAddToCart,
+        productsInCart,
+        setProductsInCart,
+        isCart,
+        setIsCart,
+        handleCloseCart
+      }}
     >
       {children}
     </GlobalContext.Provider>

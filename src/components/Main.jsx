@@ -2,7 +2,7 @@ import Navbar from "./Navbar";
 import Products from "./Products";
 import Home from "./Home";
 import About from "./About";
-// import Featured from "./Featured";
+import Cart from "./Cart";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 const Main = () => {
@@ -11,9 +11,9 @@ const Main = () => {
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
-        {/* <Route path="/" element={<Featured />} /> */}
         <Route path="/about" element={<About />} />
         <Route path="/products" element={<Products />} />
+        <Route path="/cart" element={<Cart />} />
       </Routes>
     </BrowserRouter>
   );
