@@ -15,7 +15,7 @@ export default function Home() {
         </div>
 
         <div className="home-children2">
-          <h2> / Featured</h2>
+          <h2>Featured</h2>
           <Featured />
           <Link to="/products" className="btn all-products">
             All products

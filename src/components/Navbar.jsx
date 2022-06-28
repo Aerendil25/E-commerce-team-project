@@ -1,37 +1,39 @@
 import { Link } from "react-router-dom";
 import logo from "../images/logo-black.png";
+import { useGlobal } from "../context/GlobalContext";
 export default function Navbar() {
+  const { productsInCart } = useGlobal();
   return (
-    <nav class="navbar page">
-      <div class="nav-center">
+    <nav className="navbar page">
+      <div className="nav-center">
         <div>
-          <button class="toggle-nav">
-            <i class="fas fa-bars"></i>
+          <button className="toggle-nav">
+            <i className="fas fa-bars"></i>
           </button>
-          <ul class="nav-links">
+          <ul className="nav-links">
             <li>
-              <Link to="/" class="nav-link">
+              <Link to="/" className="nav-link">
                 home
               </Link>
             </li>
             <li>
-              <Link to="/products" class="nav-link">
+              <Link to="/products" className="nav-link">
                 products
               </Link>
             </li>
             <li>
-              <Link to="/about" class="nav-link">
+              <Link to="/about" className="nav-link">
                 about
               </Link>
             </li>
           </ul>
         </div>
-        <img src={logo} class="nav-logo" alt="logo" />
-        <div class="toggle-container">
-          <button class="toggle-cart">
-            <i class="fas fa-shopping-cart"></i>
-          </button>
-          <span class="cart-item-count">1</span>
+        <img src={logo} className="nav-logo" alt="logo" />
+        <div className="toggle-container">
+          <Link to="/cart" className="toggle-cart">
+            <i className="fas fa-shopping-cart"></i>
+          </Link>
+          <span className="cart-item-count">{productsInCart.length}</span>
         </div>
       </div>
     </nav>
