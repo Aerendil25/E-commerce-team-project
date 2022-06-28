@@ -31,6 +31,15 @@ export const GlobalProvider = ({ children }) => {
     setFilteredProductsData(filteredProductsData);
   };
 
+  const handleSearch =(e)=>{
+    const filterData = productsData.filter(
+      product=>product.fields.name.includes(
+        e.target.value
+      )
+    )
+    setFilteredProductsData(filterData)
+  }
+
   const handleAllProducts = () => {
     setFilteredProductsData([...products]);
   };
@@ -52,7 +61,8 @@ export const GlobalProvider = ({ children }) => {
         handleCloseCart,
         handleProductsByBrand,
         filteredProductsData,
-        handleAllProducts
+        handleAllProducts,
+        handleSearch
       }}
     >
       {children}

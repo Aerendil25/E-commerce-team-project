@@ -2,6 +2,7 @@ import Product from "./Product";
 import Hero from "./Hero";
 import { useGlobal } from "../context/GlobalContext";
 import FilterByBrand from "./FilterByBrand";
+import Search from"./Search"
 export default function Products() {
   const { productsData, filteredProductsData } = useGlobal();
 
@@ -40,10 +41,7 @@ export default function Products() {
       <section className="products">
         <div className="filters">
           <div className="filters-container">
-            <form className="input-form">
-              <input type="text" className="search-input" placeholder="search..." />
-
-            </form>
+            <Search/>
             <h4>Company</h4>
             <article className="companies">
               <FilterByBrand />
