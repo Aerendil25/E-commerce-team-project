@@ -1,8 +1,9 @@
 import Product from "./Product";
 import Hero from "./Hero";
 import { useGlobal } from "../context/GlobalContext";
+import FilterByBrand from "./FilterByBrand";
 export default function Products() {
-  const { productsData } = useGlobal();
+  const { productsData, filteredProductsData } = useGlobal();
 
   return (
     <div>
@@ -45,8 +46,7 @@ export default function Products() {
             </form>
             <h4>Company</h4>
             <article className="companies">
-              <button className="company-btn">all</button>
-              <button className="company-btn">ikea</button>
+              <FilterByBrand />
             </article>
             {/* Arina's part start */}
             <h4>Price</h4>
@@ -63,7 +63,7 @@ export default function Products() {
           </div>
         </div>
         <div className="products-container">
-          {productsData.map((product) =>
+          {filteredProductsData.map((product) =>
             <Product product={product} key={product.id} />
           )}
         </div>
