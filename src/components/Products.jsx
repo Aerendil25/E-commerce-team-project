@@ -2,11 +2,12 @@ import Product from "./Product";
 import Hero from "./Hero";
 import { useGlobal } from "../context/GlobalContext";
 export default function Products() {
-const { productsData } = useGlobal();
+  const { productsData } = useGlobal();
 
   return (
     <div>
       <Hero />
+
       <div className="sidebar-overlay">
         <aside className="sidebar">
           <button className="sidebar-close">
@@ -40,6 +41,7 @@ const { productsData } = useGlobal();
           <div className="filters-container">
             <form className="input-form">
               <input type="text" className="search-input" placeholder="search..." />
+
             </form>
             <h4>Company</h4>
             <article className="companies">
@@ -53,7 +55,6 @@ const { productsData } = useGlobal();
                 type="range"
                 className="price-filter"
                 min="0"
-                
                 max="100"
               />
             </form>

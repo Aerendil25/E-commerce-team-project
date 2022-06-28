@@ -17,11 +17,8 @@ export const GlobalProvider = ({ children }) => {
 
     setIsCart(!isCart);
   };
-  console.log("isCart", isCart);
 
-  const handleCloseCart =() => {
-    
-  }
+  const handleCloseCart =() => {}
 
   return (
     <GlobalContext.Provider
