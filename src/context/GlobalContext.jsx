@@ -7,6 +7,9 @@ export const GlobalProvider = ({ children }) => {
   const [productsInCart, setProductsInCart] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [isCart, setIsCart] = useState(false);
+  const [filteredProductsData, setFilteredProductsData] = useState([
+    ...products,
+  ]);
 
   const handleAddToCart = (product, e) => {
     e.preventDefault();
@@ -16,6 +19,20 @@ export const GlobalProvider = ({ children }) => {
       : setProductsInCart([...productsInCart]);
 
     setIsCart(!isCart);
+  };
+
+  const handleProductsByBrand = (e) => {
+    const filteredProductsData = productsData.filter(
+      (item) =>
+        item.fields.company.charAt(0).toUpperCase() +
+          item.fields.company.slice(1) ===
+        e.target.innerText
+    );
+    setFilteredProductsData(filteredProductsData);
+  };
+
+  const handleAllProducts = () => {
+    setFilteredProductsData([...products]);
   };
 
   const handleCloseCart =() => {}
@@ -32,7 +49,10 @@ export const GlobalProvider = ({ children }) => {
         setProductsInCart,
         isCart,
         setIsCart,
-        handleCloseCart
+        handleCloseCart,
+        handleProductsByBrand,
+        filteredProductsData,
+        handleAllProducts
       }}
     >
       {children}
