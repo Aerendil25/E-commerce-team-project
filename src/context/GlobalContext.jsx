@@ -11,6 +11,7 @@ export const GlobalProvider = ({ children }) => {
     ...products,
   ]);
   const [selectedProduct, setSelectedProduct] = useState({})
+  const uniqueProductsInCart = Array.from(new Set(productsInCart));
 
   const handleAddToCart = (product, e) => {
     e.preventDefault();
@@ -18,6 +19,15 @@ export const GlobalProvider = ({ children }) => {
     found
       ? setProductsInCart([...productsInCart, product])
       : setProductsInCart([...productsInCart]);
+
+    setIsCart(!isCart);
+  };
+
+  const handleDeleteFromCart = (product, e) => {
+    e.preventDefault();
+    let foundIndex = productsInCart.findIndex((data) => data.id === product.id);
+    console.log(foundIndex);
+    productsInCart.splice(foundIndex, 1);
 
     setIsCart(!isCart);
   };
@@ -66,6 +76,8 @@ export const GlobalProvider = ({ children }) => {
         handleSearch,
         selectedProduct,
         setSelectedProduct,
+        uniqueProductsInCart,
+        handleDeleteFromCart
       }}
     >
       {children}
