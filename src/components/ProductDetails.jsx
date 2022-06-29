@@ -2,7 +2,7 @@
 import Hero from "./Hero";
 import { useGlobal } from "../context/GlobalContext";
 export default function ProductDetails() {
-    const { selectedProduct, formatProductPrice } = useGlobal();
+    const { selectedProduct } = useGlobal();
 
     return (
 
@@ -15,7 +15,7 @@ export default function ProductDetails() {
                         <div>
                             <h2 className="single-product-title">{selectedProduct.fields.name}</h2>
                             <p className="single-product-company text-slanted">{selectedProduct.fields.name}</p>
-                            <p className="single-product-price">${formatProductPrice(selectedProduct.fields.price)}</p>
+                            <p className="single-product-price">${(selectedProduct.fields.price)/100}</p>
                             <div className="single-product-colors">
                                 {
                                     selectedProduct.fields.colors && selectedProduct.fields.colors.map((color) => {
