@@ -1,9 +1,8 @@
 import { useGlobal } from "../context/GlobalContext";
 import { Link } from "react-router-dom";
-import ProductDetails from "./ProductDetails";
 
 export default function Product({ product }) {
-  const { handleAddToCart, setSelectedProduct, formatProductPrice } = useGlobal();
+  const { handleAddToCart, setSelectedProduct } = useGlobal();
   return (
     <article className="product">
       <div className="product-container">
@@ -31,7 +30,7 @@ export default function Product({ product }) {
       <footer className="footer">
         <h4 className="product-name">{product.fields.name}</h4>
         <p className="product-price">
-          ${formatProductPrice(product.fields.price)}
+          ${(product.fields.price)/100}
         </p>
       </footer>
     </article>

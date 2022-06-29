@@ -47,16 +47,6 @@ export const GlobalProvider = ({ children }) => {
 
   const handleCloseCart = () => { }
 
-  /* 
-    function takes price in integer [ number ] format and converts it to price format by getting the last 2 digits
-    as cents [decimals] and adds them to integer part of price
-  */
-  const formatProductPrice = (price) => {
-    let decimalPart = (price % 100) / 100;
-    let intPart = Math.floor(price / 100);
-    return intPart + decimalPart;
-  };
-
   return (
     <GlobalContext.Provider
       value={{
@@ -76,7 +66,6 @@ export const GlobalProvider = ({ children }) => {
         handleSearch,
         selectedProduct,
         setSelectedProduct,
-        formatProductPrice
       }}
     >
       {children}
