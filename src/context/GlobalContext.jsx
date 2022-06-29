@@ -55,10 +55,10 @@ export const GlobalProvider = ({ children }) => {
   };
 
   const handleRange = () => {
-    const rangeProducts = productsData.filter(product => product.fields.price >= rangeValue && product)
-    console.log(rangeProducts);
+    // const rangeProducts = productsData.filter(product => product.fields.price >= rangeValue && product)
+    // console.log(rangeProducts);
   };
-  // console.log(rangeValue);
+  console.log(rangeValue);
 
   return (
     <GlobalContext.Provider
