@@ -1,32 +1,40 @@
-import Product from "./Product";
+
 import Hero from "./Hero";
 import { useGlobal } from "../context/GlobalContext";
-export default function Products() {
-    const { productsData } = useGlobal();
+export default function ProductDetails() {
+    const { selectedProduct, formatProductPrice } = useGlobal();
 
     return (
 
         <section className="single-product">
             <Hero />
-            <div className="section-center single-product-center">
-                <img src="" className="single-product-center" alt="" />
-                <article className="single-product-info">
-                    <div>
-                        {/* bring product title */}
-                        <h2 className="single-product-title"></h2>
-                        {/* made by company name here below */}
-                        <p className="single-product-company text-slanted"></p>
-                        {/* price of product below here */}
-                        <p className="single-product-price"></p>
-                        <div className="single-product-colors">
-                            <span className="product-color"></span>
-                            <span className="product-color"></span>
+            {
+                selectedProduct ? <div className="section-center single-product-center">
+                    <img src={selectedProduct.fields.image[0].thumbnails.full.url} className="single-product-img" alt="" />
+                    <article className="single-product-info">
+                        <div>
+                            <h2 className="single-product-title">{selectedProduct.fields.name}</h2>
+                            <p className="single-product-company text-slanted">{selectedProduct.fields.name}</p>
+                            <p className="single-product-price">${formatProductPrice(selectedProduct.fields.price)}</p>
+                            <div className="single-product-colors">
+                                {
+                                    selectedProduct.fields.colors && selectedProduct.fields.colors.map((color) => {
+                                        return (
+                                            <span
+                                                style={{ backgroundColor: `${color}` }}
+                                                className="product-color"
+                                            >
+                                            </span>
+                                        )
+                                    })
+                                }
+                            </div>
+                            <p className="single-product-desc">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Consequatur earum doloribus architecto ipsum quasi! Ipsa suscipit provident alias a sunt itaque praesentium sed consequatur eius maxime quae excepturi quia perspiciatis, deleniti non. Aliquid obcaecati architecto error neque officia ex! Eum non, repudiandae quasi odio neque quam recusandae tempore suscipit incidunt.</p>
+                            <button className="addToCartBtn btn" data-id="id">add to cart</button>
                         </div>
-                        <p className="single-product-desc">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Consequatur earum doloribus architecto ipsum quasi! Ipsa suscipit provident alias a sunt itaque praesentium sed consequatur eius maxime quae excepturi quia perspiciatis, deleniti non. Aliquid obcaecati architecto error neque officia ex! Eum non, repudiandae quasi odio neque quam recusandae tempore suscipit incidunt.</p>
-                        <button className="addToCartBtn btn" data-id="id">add to cart</button>
-                    </div>
-                </article>
-            </div>
+                    </article>
+                </div> : "LOADING..."
+            }
         </section>
     );
 }
