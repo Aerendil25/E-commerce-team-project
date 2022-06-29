@@ -1,19 +1,26 @@
 import { useGlobal } from "../context/GlobalContext";
+import { Link } from "react-router-dom";
+import ProductDetails from "./ProductDetails";
+
 export default function Product({ product }) {
-  const { handleAddToCart } = useGlobal();
+  const { handleAddToCart, setSelectedProduct, formatProductPrice } = useGlobal();
   return (
     <article className="product">
       <div className="product-container">
         <div className="product-icons">
-          <a href="" className="product-icon">
-            <i className="fa-solid fa-magnifying-glass-plus"></i>
-          </a>
-          <a href="" className="product-icon product-cart-btn">
+          <Link to='/productDetails'>
             <i
-              className="fa-solid fa-cart-plus"
-              onClick={(e) => handleAddToCart(product, e)}
-            ></i>
-          </a>
+              className="fa-solid fa-magnifying-glass-plus product-icon"
+              onClick={() => {
+                setSelectedProduct(product)
+              }}
+            >
+            </i>
+          </Link>
+          <i
+            className="fa-solid fa-cart-plus product-icon product-cart-btn"
+            onClick={(e) => handleAddToCart(product, e)}
+          ></i>
         </div>
         <img
           className="product-img img"
@@ -30,13 +37,3 @@ export default function Product({ product }) {
     </article>
   );
 }
-
-/* 
-  function takes price in integer [ number ] format and converts it to price format by getting the last 2 digits
-  as cents [decimals] and adds them to integer part of price
-*/
-const formatProductPrice = (price) => {
-  let decimalPart = (price % 100) / 100;
-  let intPart = Math.floor(price / 100);
-  return intPart + decimalPart;
-};

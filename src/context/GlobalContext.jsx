@@ -10,6 +10,7 @@ export const GlobalProvider = ({ children }) => {
   const [filteredProductsData, setFilteredProductsData] = useState([
     ...products,
   ]);
+  const [selectedProduct, setSelectedProduct] = useState({})
 
   const handleAddToCart = (product, e) => {
     e.preventDefault();
@@ -25,15 +26,15 @@ export const GlobalProvider = ({ children }) => {
     const filteredProductsData = productsData.filter(
       (item) =>
         item.fields.company.charAt(0).toUpperCase() +
-          item.fields.company.slice(1) ===
+        item.fields.company.slice(1) ===
         e.target.innerText
     );
     setFilteredProductsData(filteredProductsData);
   };
 
-  const handleSearch =(e)=>{
+  const handleSearch = (e) => {
     const filterData = productsData.filter(
-      product=>product.fields.name.includes(
+      product => product.fields.name.includes(
         e.target.value
       )
     )
@@ -44,7 +45,17 @@ export const GlobalProvider = ({ children }) => {
     setFilteredProductsData([...products]);
   };
 
-  const handleCloseCart =() => {}
+  const handleCloseCart = () => { }
+
+  /* 
+    function takes price in integer [ number ] format and converts it to price format by getting the last 2 digits
+    as cents [decimals] and adds them to integer part of price
+  */
+  const formatProductPrice = (price) => {
+    let decimalPart = (price % 100) / 100;
+    let intPart = Math.floor(price / 100);
+    return intPart + decimalPart;
+  };
 
   return (
     <GlobalContext.Provider
@@ -62,7 +73,10 @@ export const GlobalProvider = ({ children }) => {
         handleProductsByBrand,
         filteredProductsData,
         handleAllProducts,
-        handleSearch
+        handleSearch,
+        selectedProduct,
+        setSelectedProduct,
+        formatProductPrice
       }}
     >
       {children}
