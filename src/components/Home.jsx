@@ -9,7 +9,7 @@ export default function Home() {
         <div className="home-children">
           <h1>Rest, Relax, Unwind</h1>
           <h3>Embrace your choices - we do</h3>
-          <Link to="/products" id="home-btn">
+          <Link to="/products" className="hero-btn ">
             Show now
           </Link>
         </div>
