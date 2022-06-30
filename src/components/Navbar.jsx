@@ -1,14 +1,20 @@
 import { Link } from "react-router-dom";
 import logo from "../images/logo-black.png";
 import { useGlobal } from "../context/GlobalContext";
+import HamburgerModal from '../components/HamburgerModal'
 export default function Navbar() {
-  const { productsInCart } = useGlobal();
+  const { productsInCart, hamburgerShow, setHamburgerShow } = useGlobal();
   return (
     <nav className="navbar page">
       <div className="nav-center">
         <div>
-          <button className="toggle-nav">
-            <i className="fas fa-bars"></i>
+          <button className="toggle-nav" 
+          onClick={() => setHamburgerShow(!hamburgerShow)}
+          >
+            <i className="fas fa-bars">
+              {hamburgerShow && <HamburgerModal/>}
+              
+            </i>
           </button>
           <ul className="nav-links">
             <li>
