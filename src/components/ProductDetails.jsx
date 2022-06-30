@@ -1,7 +1,7 @@
 
 import Hero from "./Hero";
 import { useGlobal } from "../context/GlobalContext";
-export default function ProductDetails({product}) {
+export default function ProductDetails() {
     const { selectedProduct, handleAddToCart } = useGlobal();
 
     return (

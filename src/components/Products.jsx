@@ -15,7 +15,6 @@ export default function Products() {
   return (
     <div>
       <Hero />
-
       <div className="sidebar-overlay">
         <aside className="sidebar">
           <button className="sidebar-close">

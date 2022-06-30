@@ -10,9 +10,10 @@ export const GlobalProvider = ({ children }) => {
   const [filteredProductsData, setFilteredProductsData] = useState([
     ...products,
   ]);
-  const [selectedProduct, setSelectedProduct] = useState({})
+  const [selectedProduct, setSelectedProduct] = useState({});
   const uniqueProductsInCart = Array.from(new Set(productsInCart));
   const [rangeValue, setRangeValue] = useState("");
+  const [hamburgerShow, setHamburgerShow] = useState(false);
 
   const handleAddToCart = (product, e) => {
     e.preventDefault();
@@ -20,17 +21,21 @@ export const GlobalProvider = ({ children }) => {
     found
       ? setProductsInCart([...productsInCart, product])
       : setProductsInCart([...productsInCart]);
-
     setIsCart(!isCart);
   };
 
   const handleDeleteFromCart = (product, e) => {
     e.preventDefault();
     let foundIndex = productsInCart.findIndex((data) => data.id === product.id);
-    console.log(foundIndex);
     productsInCart.splice(foundIndex, 1);
-
     setIsCart(!isCart);
+  };
+
+  const handleRemoveFromCart = (productId, e) => {
+    e.preventDefault();
+    setProductsInCart(
+      productsInCart.filter((removed) => removed.id !== productId)
+    );
   };
 
   const handleProductsByBrand = (e) => {
@@ -56,9 +61,8 @@ export const GlobalProvider = ({ children }) => {
 
   const handleRange = () => {
     // const rangeProducts = productsData.filter(product => product.fields.price >= rangeValue && product)
-    // console.log(rangeProducts);
+    //Baha's part
   };
-  console.log(rangeValue);
 
   return (
     <GlobalContext.Provider
@@ -83,6 +87,9 @@ export const GlobalProvider = ({ children }) => {
         handleDeleteFromCart,
         rangeValue,
         setRangeValue,
+        hamburgerShow,
+        setHamburgerShow,
+        handleRemoveFromCart
       }}
     >
       {children}

@@ -6,10 +6,10 @@ export default function Cart() {
     uniqueProductsInCart,
     handleAddToCart,
     handleDeleteFromCart,
+    handleRemoveFromCart,
   } = useGlobal();
   const itemPrice = productsInCart.map((item) => item.fields.price);
   const totalPrice = itemPrice.reduce((acc, item) => (acc += item), 0);
-  console.log(totalPrice);
 
   return (
     <div>
@@ -34,7 +34,12 @@ export default function Cart() {
                   <div className="cart-item-price">
                     ${product.fields.price / 100}
                   </div>
-                  <button className="cart-item-remove-btn">remove</button>
+                  <button
+                    className="cart-item-remove-btn"
+                    onClick={(e) => handleRemoveFromCart(product.id, e)}
+                  >
+                    remove
+                  </button>
                 </div>
                 <div>
                   <button
@@ -57,7 +62,9 @@ export default function Cart() {
             ))}
           </div>
           <footer>
-            <h3 className="cart-total text-slanted">total : ${totalPrice/100}</h3>
+            <h3 className="cart-total text-slanted">
+              total : ${totalPrice / 100}
+            </h3>
             <button className="cart-checkout btn">checkout</button>
           </footer>
         </aside>
