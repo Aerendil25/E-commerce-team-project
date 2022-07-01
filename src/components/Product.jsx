@@ -1,12 +1,13 @@
 import { useGlobal } from "../context/GlobalContext";
 import { Link } from "react-router-dom";
+import Loading from "./Loading";
 
 export default function Product({ product }) {
   const { handleAddToCart, setSelectedProduct, isLoading } = useGlobal();
   return (
     <div>
       {isLoading ? (
-        "Loading..."
+        <Loading />
       ) : (
         <article className="product">
           <div className="product-container">

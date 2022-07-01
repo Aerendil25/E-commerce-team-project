@@ -4,15 +4,22 @@ import { products } from "../data";
 const GlobalContext = createContext();
 export const GlobalProvider = ({ children }) => {
   const [productsData, setProductsData] = useState(products);
+  let maxPriceDetected = productsData[0].fields.price;
+  let minPriceDetected = productsData[0].fields.price;
+  for (let product of productsData) {
+    if (product.fields.price >= maxPriceDetected) maxPriceDetected = product.fields.price;
+    if (product.fields.price <= minPriceDetected) minPriceDetected = product.fields.price;
+  }
+  const [maxPrice, setMaxPrice] = useState(maxPriceDetected + 1)
+  const [minPrice, setMinPrice] = useState(minPriceDetected)
   const [productsInCart, setProductsInCart] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
   const [isCart, setIsCart] = useState(false);
   const [filteredProductsData, setFilteredProductsData] = useState([
     ...products,
   ]);
   const [selectedProduct, setSelectedProduct] = useState({});
   const uniqueProductsInCart = Array.from(new Set(productsInCart));
-  const [rangeValue, setRangeValue] = useState("");
+  const [rangeValue, setRangeValue] = useState(99);
   const [hamburgerShow, setHamburgerShow] = useState(false);
 
   const handleAddToCart = (product, e) => {
@@ -42,7 +49,7 @@ export const GlobalProvider = ({ children }) => {
     const filteredProductsData = productsData.filter(
       (item) =>
         item.fields.company.charAt(0).toUpperCase() +
-          item.fields.company.slice(1) ===
+        item.fields.company.slice(1) ===
         e.target.innerText
     );
     setFilteredProductsData(filteredProductsData);
@@ -60,7 +67,9 @@ export const GlobalProvider = ({ children }) => {
   };
 
   const handlePriceRange = (e) => {
-    const rangeProducts = productsData.filter(product => product.fields.price <= Number(e)*100)
+    setRangeValue(e)
+    // setMaxPrice(e)
+    const rangeProducts = productsData.filter(product => product.fields.price <= Math.ceil(Number(e)) * 100)
     setFilteredProductsData(rangeProducts)
   };
 
@@ -69,8 +78,6 @@ export const GlobalProvider = ({ children }) => {
       value={{
         productsData,
         setProductsData,
-        isLoading,
-        setIsLoading,
         handleAddToCart,
         productsInCart,
         setProductsInCart,
@@ -89,7 +96,9 @@ export const GlobalProvider = ({ children }) => {
         hamburgerShow,
         setHamburgerShow,
         handleRemoveFromCart,
-        handlePriceRange
+        handlePriceRange,
+        minPrice,
+        maxPrice,
       }}
     >
       {children}

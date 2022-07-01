@@ -1,4 +1,5 @@
 function Hero() {
+  
   return (
     <section className="page-hero">
       <div className="section-center">
