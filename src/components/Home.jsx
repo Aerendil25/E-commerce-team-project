@@ -13,7 +13,6 @@ export default function Home() {
             Show now
           </Link>
         </div>
-
         <div className="home-children2">
           <h2>Featured</h2>
           <Featured />
