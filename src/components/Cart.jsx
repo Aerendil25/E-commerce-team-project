@@ -2,21 +2,22 @@ import { useGlobal } from "../context/GlobalContext";
 export default function Cart() {
   const {
     productsInCart,
-    handleCloseCart,
     uniqueProductsInCart,
     handleAddToCart,
     handleDeleteFromCart,
     handleRemoveFromCart,
+    isCart,
+    setIsCart
   } = useGlobal();
   const itemPrice = productsInCart.map((item) => item.fields.price);
   const totalPrice = itemPrice.reduce((acc, item) => (acc += item), 0);
 
   return (
-    <div>
-      <div className="cart-overlay">
+    < div >
+      <div className={`cart-overlay ${isCart ? "show" : ""}`}>
         <aside className="cart">
           <button className="cart-close">
-            <i className="fas fa-times" onClick={handleCloseCart}></i>
+            <i className="fas fa-times" onClick={() => { setIsCart(false) }}></i>
           </button>
           <header>
             <h3 className="text-slanted">your items</h3>
@@ -69,6 +70,6 @@ export default function Cart() {
           </footer>
         </aside>
       </div>
-    </div>
+    </div >
   );
 }

@@ -292,11 +292,11 @@ Hero
 ===============
 */
 .home h1 {
-  font-family: 'Sail', cursive;
+  font-family: "Sail", cursive;
   font-weight: 700;
 }
 .home h3 {
-  font-family: 'Sail', cursive;
+  font-family: "Sail", cursive;
   text-transform: none;
   font-size: 1.5rem;
 }
@@ -315,7 +315,7 @@ Hero
 .hero-btn:hover {
   background: transparent;
   color: rgb(77, 65, 56);
-  box-shadow: -2px 5px 10px 4px rgba(94,71,55,0.75);
+  box-shadow: -2px 5px 10px 4px rgba(94, 71, 55, 0.75);
 }
 
 @media screen and (min-width: 800px) {
@@ -410,7 +410,7 @@ Cart
   height: 100%;
   background: rgba(0, 0, 0, 0.5);
   transition: var(--transition);
-  /* opacity: 0; */
+  opacity: 0;
   z-index: -1;
 }
 .cart-overlay.show {
@@ -534,7 +534,7 @@ product
   height: 15rem;
   object-fit: cover;
   border-radius: var(--radius);
-  box-shadow: -2px 5px 13px 4px rgba(189,189,189,0.75);
+  box-shadow: -2px 5px 13px 4px rgba(189, 189, 189, 0.75);
 }
 .product-container {
   position: relative;
@@ -848,7 +848,7 @@ Single Product Page
   height: 250px;
 }
 .history-child h1 {
-  font-family: 'Sail', cursive;
+  font-family: "Sail", cursive;
 }
 @media screen and (max-width: 576px) {
   .history-child h1 {
