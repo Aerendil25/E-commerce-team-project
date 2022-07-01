@@ -59,9 +59,9 @@ export const GlobalProvider = ({ children }) => {
     setFilteredProductsData([...products]);
   };
 
-  const handleRange = () => {
-    // const rangeProducts = productsData.filter(product => product.fields.price >= rangeValue && product)
-    //Baha's part
+  const handlePriceRange = (e) => {
+    const rangeProducts = productsData.filter(product => product.fields.price <= Number(e)*100)
+    setFilteredProductsData(rangeProducts)
   };
 
   return (
@@ -76,7 +76,6 @@ export const GlobalProvider = ({ children }) => {
         setProductsInCart,
         isCart,
         setIsCart,
-        handleRange,
         handleProductsByBrand,
         filteredProductsData,
         handleAllProducts,
@@ -89,7 +88,8 @@ export const GlobalProvider = ({ children }) => {
         setRangeValue,
         hamburgerShow,
         setHamburgerShow,
-        handleRemoveFromCart
+        handleRemoveFromCart,
+        handlePriceRange
       }}
     >
       {children}

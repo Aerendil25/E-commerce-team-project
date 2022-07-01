@@ -4,7 +4,7 @@ import { useGlobal } from "../context/GlobalContext";
 import FilterByBrand from "./FilterByBrand";
 import Search from "./Search";
 export default function Products() {
-  const { productsData, filteredProductsData, setRangeValue, rangeValue } = useGlobal();
+  const { productsData, filteredProductsData, setRangeValue, rangeValue, handlePriceRange } = useGlobal();
 
   const minimum = productsData.reduce((prev, curr) =>
     prev.fields.price <= curr.fields.price ? prev : curr
@@ -54,7 +54,7 @@ export default function Products() {
             <h4>Price</h4>
             <form className="price-form">
               <input
-                onChange={(e) => setRangeValue(e.target.value)}
+                onChange={(e) => handlePriceRange(e.target.value)}
                 type="range"
                 className="price-filter"
                 value={rangeValue}
