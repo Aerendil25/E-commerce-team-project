@@ -28,14 +28,14 @@ export const GlobalProvider = ({ children }) => {
     found
       ? setProductsInCart([...productsInCart, product])
       : setProductsInCart([...productsInCart]);
-    setIsCart(!isCart);
+    setIsCart(true);
   };
 
   const handleDeleteFromCart = (product, e) => {
     e.preventDefault();
     let foundIndex = productsInCart.findIndex((data) => data.id === product.id);
     productsInCart.splice(foundIndex, 1);
-    setIsCart(!isCart);
+    setProductsInCart([...productsInCart])
   };
 
   const handleRemoveFromCart = (productId, e) => {
@@ -68,10 +68,13 @@ export const GlobalProvider = ({ children }) => {
 
   const handlePriceRange = (e) => {
     setRangeValue(e)
-    // setMaxPrice(e)
     const rangeProducts = productsData.filter(product => product.fields.price <= Math.ceil(Number(e)) * 100)
     setFilteredProductsData(rangeProducts)
   };
+
+  const handleCartClass = () => {
+    setIsCart(true)
+  }
 
   return (
     <GlobalContext.Provider
@@ -99,6 +102,7 @@ export const GlobalProvider = ({ children }) => {
         handlePriceRange,
         minPrice,
         maxPrice,
+        handleCartClass,
       }}
     >
       {children}

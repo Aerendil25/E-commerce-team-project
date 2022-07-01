@@ -3,17 +3,17 @@ import logo from "../images/logo-black.png";
 import { useGlobal } from "../context/GlobalContext";
 import HamburgerModal from '../components/HamburgerModal'
 export default function Navbar() {
-  const { productsInCart, hamburgerShow, setHamburgerShow } = useGlobal();
+  const { productsInCart, hamburgerShow, setHamburgerShow, handleCartClass } = useGlobal();
   return (
     <nav className="navbar page">
       <div className="nav-center">
         <div>
-          <button className="toggle-nav" 
-          onClick={() => setHamburgerShow(!hamburgerShow)}
+          <button className="toggle-nav"
+            onClick={() => setHamburgerShow(!hamburgerShow)}
           >
             <i className="fas fa-bars">
-              {hamburgerShow && <HamburgerModal/>}
-              
+              {hamburgerShow && <HamburgerModal />}
+
             </i>
           </button>
           <ul className="nav-links">
@@ -36,9 +36,11 @@ export default function Navbar() {
         </div>
         <img src={logo} className="nav-logo" alt="logo" />
         <div className="toggle-container">
-          <Link to="/cart" className="toggle-cart">
-            <i className="fas fa-shopping-cart"></i>
-          </Link>
+          {/* <Link to="/cart" className="toggle-cart" onClick={() => handleCartClass()}> */}
+          <div className="toggle-cart" onClick={() => handleCartClass()}>
+            <i className="fas fa-shopping-cart" ></i>
+          </div>
+          {/* </Link> */}
           <span className="cart-item-count">{productsInCart.length}</span>
         </div>
       </div>
