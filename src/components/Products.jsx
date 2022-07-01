@@ -51,7 +51,6 @@ export default function Products() {
             <article className="companies">
               <FilterByBrand />
             </article>
-            {/* Arina's part start */}
             <h4>Price</h4>
             <form className="price-form">
               <input
@@ -64,7 +63,6 @@ export default function Products() {
               />
             </form>
             <p className="price-value"></p>
-            {/* Arina's part end */}
           </div>
         </div>
         <div className="products-container">
