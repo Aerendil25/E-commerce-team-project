@@ -1,12 +1,8 @@
 import { Link } from "react-router-dom";
-import { useGlobal } from "../context/GlobalContext";
 import Featured from "./Featured";
-import Loading from "./Loading";
 
 export default function Home() {
-
   return (
-
     <div className="home">
       <div className="background"></div>
       <div className="flex">

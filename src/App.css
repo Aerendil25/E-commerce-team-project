@@ -699,6 +699,7 @@ Products Page
   margin: 1.5rem 0 0.5rem;
 }
 .search-input {
+  width: 130px;
   padding: 0.5rem;
   background: var(--clr-grey-10);
   border-radius: var(--radius);

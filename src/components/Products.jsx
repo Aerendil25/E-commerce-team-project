@@ -7,12 +7,9 @@ import { useState } from "react";
 import Loading from "./Loading";
 export default function Products() {
   const {
-    productsData,
     filteredProductsData,
-    setRangeValue,
     rangeValue,
     handlePriceRange,
-    minPrice,
     maxPrice
   } = useGlobal();
 
@@ -74,7 +71,7 @@ export default function Products() {
                     max={maxPrice / 100}
                   />
                 </form>
-                <p className="price-value">Value: ${(Number(rangeValue) + 1)}</p>
+                <p className="price-value">Value: ${(rangeValue)}</p>
               </div>
             </div>
             <div className="products-container">

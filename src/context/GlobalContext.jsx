@@ -7,11 +7,13 @@ export const GlobalProvider = ({ children }) => {
   let maxPriceDetected = productsData[0].fields.price;
   let minPriceDetected = productsData[0].fields.price;
   for (let product of productsData) {
-    if (product.fields.price >= maxPriceDetected) maxPriceDetected = product.fields.price;
-    if (product.fields.price <= minPriceDetected) minPriceDetected = product.fields.price;
+    if (product.fields.price >= maxPriceDetected)
+      maxPriceDetected = product.fields.price;
+    if (product.fields.price <= minPriceDetected)
+      minPriceDetected = product.fields.price;
   }
-  const [maxPrice, setMaxPrice] = useState(maxPriceDetected + 1)
-  const [minPrice, setMinPrice] = useState(minPriceDetected)
+  const [maxPrice, setMaxPrice] = useState(maxPriceDetected + 1);
+  const [minPrice, setMinPrice] = useState(minPriceDetected);
   const [productsInCart, setProductsInCart] = useState([]);
   const [isCart, setIsCart] = useState(false);
   const [filteredProductsData, setFilteredProductsData] = useState([
@@ -19,7 +21,7 @@ export const GlobalProvider = ({ children }) => {
   ]);
   const [selectedProduct, setSelectedProduct] = useState({});
   const uniqueProductsInCart = Array.from(new Set(productsInCart));
-  const [rangeValue, setRangeValue] = useState(99);
+  const [rangeValue, setRangeValue] = useState(maxPrice / 100);
   const [hamburgerShow, setHamburgerShow] = useState(false);
 
   const handleAddToCart = (product, e) => {
@@ -35,7 +37,7 @@ export const GlobalProvider = ({ children }) => {
     e.preventDefault();
     let foundIndex = productsInCart.findIndex((data) => data.id === product.id);
     productsInCart.splice(foundIndex, 1);
-    setProductsInCart([...productsInCart])
+    setProductsInCart([...productsInCart]);
   };
 
   const handleRemoveFromCart = (productId, e) => {
@@ -49,7 +51,7 @@ export const GlobalProvider = ({ children }) => {
     const filteredProductsData = productsData.filter(
       (item) =>
         item.fields.company.charAt(0).toUpperCase() +
-        item.fields.company.slice(1) ===
+          item.fields.company.slice(1) ===
         e.target.innerText
     );
     setFilteredProductsData(filteredProductsData);
@@ -67,14 +69,16 @@ export const GlobalProvider = ({ children }) => {
   };
 
   const handlePriceRange = (e) => {
-    setRangeValue(e)
-    const rangeProducts = productsData.filter(product => product.fields.price <= Math.ceil(Number(e)) * 100)
-    setFilteredProductsData(rangeProducts)
+    setRangeValue(e);
+    const rangeProducts = productsData.filter(
+      (product) => product.fields.price <= Math.ceil(Number(e)) * 100
+    );
+    setFilteredProductsData(rangeProducts);
   };
 
   const handleCartClass = () => {
-    setIsCart(true)
-  }
+    setIsCart(true);
+  };
 
   return (
     <GlobalContext.Provider
