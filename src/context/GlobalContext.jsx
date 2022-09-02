@@ -1,5 +1,11 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useState, useEffect } from "react";
 import { products } from "../data";
+
+const localStorageForProductsInCart = JSON.parse(
+  localStorage.getItem("products-in-cart")
+);
+const initialStorageInCart = localStorageForProductsInCart || [];
+// console.log("🚀 ~ file: GlobalContext.jsx ~ line 8 ~ initialStorageInCart", initialStorageInCart)
 
 const GlobalContext = createContext();
 export const GlobalProvider = ({ children }) => {
@@ -12,9 +18,10 @@ export const GlobalProvider = ({ children }) => {
     if (product.fields.price <= minPriceDetected)
       minPriceDetected = product.fields.price;
   }
-  const [maxPrice, setMaxPrice] = useState(maxPriceDetected + 1);
-  const [minPrice, setMinPrice] = useState(minPriceDetected);
-  const [productsInCart, setProductsInCart] = useState([]);
+  const [maxPrice] = useState(maxPriceDetected + 1);
+  const [minPrice] = useState(minPriceDetected);
+  const [productsInCart, setProductsInCart] = useState(initialStorageInCart);
+  // console.log("🚀 ~ file: GlobalContext.jsx ~ line 23 ~ GlobalProvider ~ productsInCart", productsInCart)
   const [isCart, setIsCart] = useState(false);
   const [filteredProductsData, setFilteredProductsData] = useState([
     ...products,
@@ -32,6 +39,10 @@ export const GlobalProvider = ({ children }) => {
       : setProductsInCart([...productsInCart]);
     setIsCart(true);
   };
+
+  useEffect(() => {
+    localStorage.setItem("products-in-cart", JSON.stringify(productsInCart));
+  }, [productsInCart]);
 
   const handleDeleteFromCart = (product, e) => {
     e.preventDefault();
